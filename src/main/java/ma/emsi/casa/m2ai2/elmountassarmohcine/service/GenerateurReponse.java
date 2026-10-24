@@ -1,6 +1,7 @@
 package ma.emsi.casa.m2ai2.elmountassarmohcine.service;
 
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import jakarta.enterprise.context.Dependent;
 
 import java.io.Serializable;
@@ -32,6 +33,14 @@ public class GenerateurReponse implements Serializable { // Serializable car CDI
             this.roleSystemeAffiche = true;
         }
         resultat += question.toLowerCase(Locale.FRENCH) + "||";
+
+        /**ce que j'ai ajouter pour le bonus la petite modification*/
+
+        String horodatage = LocalDateTime.now()
+                .format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+
+        resultat += "\n[Réponse générée le " + horodatage + "]";
+
         return resultat;
     }
 }
